@@ -11,10 +11,12 @@ public class ATM {
 	/**
 	 * creates a new ATM object
 	 * @param b the Bank associated with the ATM
+	 * @param name the name of the ATM
 	 */
-	public ATM(Bank b) {
+	public ATM(Bank b, String name) {
 		this.bankAssociated = b;
-		this.withdrawMax = 50;
+		this.withdrawMax = 60;
+		this.name = name;
 	}
 	
 	/**
@@ -48,8 +50,9 @@ public class ATM {
 			System.out.println("This amount exceeds the maximum amount you can withdraw per transaction. Please enter the amount or quit.");
 			amount = Integer.parseInt(sc.nextLine().replaceAll("$", ""));
 		}
+		account.withdrawMoney(amount);
 		double currentBalance = account.getBalance();
-//		System.out.println("CurrentBalnce: " + currentBalance);
+		System.out.println("CurrentBalnce: " + currentBalance);
 		while (currentBalance < amount) {
 			System.out.println("The amount exceeds the current balance. Enter another amount or quit. ");
 			amount = Integer.parseInt(sc.nextLine().replaceAll("$", ""));
@@ -81,12 +84,28 @@ public class ATM {
 			if (toCompare.equals(input)) {
 				currentCard = a.getCard();
 				currentAccount.setPassword(a.getPassword());
-				System.out.println("equals");
 				exists = true;
 				break;
 			}
 		}
-		if (exists) return currentCard;
-		else return null;
+		if (exists) {
+			return currentCard;
+		}
+		else {
+			currentCard = null;
+			return currentCard;
+		}
+	}
+	
+	/**
+	 * returns a String representation of the ATM's state
+	 * @param num which ATM, 1 or 2 this ATM corresponds to
+	 * @param whichATM which ATM, A or B this ATM corresponds to
+	 * @return a String representation of the ATM's state
+	 */
+	public String atmState(int num, String whichATM) {
+		String toReturn = "ATM_" + num + whichATM + ": " + "(ATM" + num + ") from " + name + "\n"; 
+		toReturn +=  "The maximum amount of cash a card can withdraw per day: $" + this.withdrawMax;
+		return toReturn;
 	}
 }

@@ -58,9 +58,9 @@ public class Bank {
 		if (numCustomers == 0) {
 			return "(no customers)";
 		}
-		state += "(" + numCustomers + "customers)\n";
+		state += "(" + numCustomers + " customers)\n";
 		for(Account a : accounts) {
-			state += "Customer with Cash Card (bankid: " + bankID + ", account number: " + a.getAccountID() + ", expires on: " + a.getCard().getStringOfExpiryDate() + ", password: " + a.getPassword() +"\n";
+			state += a.getName() + " with Cash Card (bankid: " + bankID + ", account number: " + a.getAccountID() + ", expires on: " + a.getCard().getStringOfExpiryDate() + ", password: " + a.getPassword() +"\n";
 		}
 		return state;
 	}

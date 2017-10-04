@@ -5,18 +5,38 @@ public class Account {
 	private String password;
 	private Card card = null;
 	private String accountID = "";
+	private String name = "";
 	
 	/**
 	 * creates a new Account object
 	 * @param password the password of the Account
 	 * @param balance the starting balance of the Account
 	 * @param accountID the accountID
+	 * @param name the name associated with this Account
 	 */
-	public Account(String password, final double balance, final String accountID) { 
+	public Account(String password, final double balance, final String accountID, final String name) { 
 		this.balance = balance;
 		this.password = password;
 		this.accountID = accountID;
+		this.name = name;
 	}
+	
+	/**
+	 * returns the name associated with this Account
+	 * @return the name associated with this Account
+	 */
+	public String getName() {
+		return this.name;
+	}
+	
+	/**
+	 * set's name associated with Account
+	 * @param s the name
+	 */
+	public void setName(String s) {
+		this.name = s;
+	}
+	
 	
 	/**
 	 * returns the current balance of the Account
